@@ -1,0 +1,125 @@
+/* =====================================================
+   Hero Component Styles
+   ===================================================== */
+
+.hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+              url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1920') center/cover no-repeat;
+  margin-top: 70px;
+}
+
+.hero-content {
+  text-align: center;
+  color: var(--color-white);
+  max-width: 800px;
+  padding: 0 var(--spacing-md);
+}
+
+.hero-text h1 {
+  color: var(--color-white);
+  font-size: var(--font-size-6xl);
+  margin-bottom: var(--spacing-md);
+  font-family: var(--font-primary);
+  font-weight: 700;
+}
+
+.hero-text .tagline {
+  font-size: var(--font-size-xl);
+  color: var(--color-primary-light);
+  margin-bottom: var(--spacing-lg);
+  font-weight: 300;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.hero-text p {
+  font-size: var(--font-size-lg);
+  margin-bottom: var(--spacing-xl);
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.hero-rating {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-xl);
+  color: var(--color-primary);
+  font-weight: 500;
+}
+
+.rating-stars {
+  display: flex;
+  gap: 2px;
+}
+
+.rating-stars svg {
+  color: #FFD700;
+  font-size: var(--font-size-base);
+}
+
+.hero-buttons {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.hero-buttons .btn {
+  min-width: 160px;
+  padding: var(--spacing-md) var(--spacing-lg);
+  font-size: var(--font-size-base);
+  font-weight: 500;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .hero {
+    margin-top: 60px;
+    height: 80vh;
+  }
+
+  .hero-text h1 {
+    font-size: var(--font-size-5xl);
+  }
+
+  .hero-text .tagline {
+    font-size: var(--font-size-lg);
+    letter-spacing: 1px;
+  }
+
+  .hero-text p {
+    font-size: var(--font-size-base);
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-sm);
+  }
+
+  .hero-buttons .btn {
+    width: 200px;
+  }
+
+  .hero-rating {
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-text h1 {
+    font-size: var(--font-size-4xl);
+  }
+
+  .hero-text .tagline {
+    font-size: var(--font-size-base);
+  }
+}
