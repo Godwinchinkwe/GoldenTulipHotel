@@ -239,7 +239,7 @@ const Booking = () => {
                         value={bookingData.firstName}
                         onChange={handleInputChange}
                         required
-                        className="form-control"
+                        className="form-controll"
                         placeholder="Enter your first name"
                       />
                     </div>
@@ -256,7 +256,7 @@ const Booking = () => {
                         value={bookingData.lastName}
                         onChange={handleInputChange}
                         required
-                        className="form-control"
+                        className="form-controll"
                         placeholder="Enter your last name"
                       />
                     </div>
@@ -265,7 +265,7 @@ const Booking = () => {
 
                 <div className="form-row">
                   <div className="form-group">
-                    <label htmlFor="email">Email Address *</label>
+                    <label htmlFor="email">    Email Address *</label>
                     <div className="input-with-icon">
                       <FaEnvelope className="input-icon" />
                       <input
@@ -275,7 +275,7 @@ const Booking = () => {
                         value={bookingData.email}
                         onChange={handleInputChange}
                         required
-                        className="form-control"
+                        className="form-controll"
                         placeholder="Enter your email address"
                       />
                     </div>
@@ -292,7 +292,7 @@ const Booking = () => {
                         value={bookingData.phone}
                         onChange={handleInputChange}
                         required
-                        className="form-control"
+                        className="form-controll"
                         placeholder="Enter your phone number"
                       />
                     </div>

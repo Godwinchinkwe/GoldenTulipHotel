@@ -143,36 +143,49 @@
   font-size: var(--font-size-sm);
 }
 
-.input-with-icon {
-  position: relative;
+ .input-with-icon {
+  /* position: relative; */
+  /* margin-right: 10px; */
+  /* background: greenyellow; */
+  border: 2px solid var(--color-gray-light);
+  border-radius: var(--border-radius-md);
+  padding: 16px;
+  display: flex;
+  /* align-items:space-between; */
+  justify-content: space-between;
+   
 }
 
 .input-icon {
-  position: absolute;
-  left: var(--spacing-md);
-  top: 50%;
-  transform: translateY(-50%);
+  /* position: absolute; */
+  /* left: var(--spacing-md); */
+  /* top: 50%;   */
+  /* transform: translateY(-50%); */
   color: var(--color-gray);
-  font-size: var(--font-size-base);
+  /* font-size: var(--font-size-base); */
+  /* gap: 10px; */
+  /* background: red; */
+  /* padding: 10px; */
+} 
+
+.form-controll {
+  width: 85%;
+  /* padding: var(--spacing-xs) var(--spacing-md) var(--spacing-md) var(--spacing-2xl); */
+  border: none;
+  outline: none;
+  /* border-radius: var(--border-radius-md); */
+  /* font-size: var(--font-size-base); */
+  /* transition: all var(--transition-base); */
+  /* background-color: var(--color-white); */
 }
 
-.form-control {
-  width: 100%;
-  padding: var(--spacing-md) var(--spacing-md) var(--spacing-md) var(--spacing-2xl);
-  border: 2px solid var(--color-gray-light);
-  border-radius: var(--border-radius-md);
-  font-size: var(--font-size-base);
-  transition: all var(--transition-base);
-  background-color: var(--color-white);
-}
-
-.form-control:focus {
+.form-controll:focus {
   outline: none;
   border-color: var(--color-primary);
   box-shadow: 0 0 0 3px rgba(201, 169, 110, 0.1);
 }
 
-select.form-control {
+select.form-controll {
   padding-right: var(--spacing-xl);
   /* background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e"); */
   background-position: right var(--spacing-sm) center;
@@ -180,7 +193,7 @@ select.form-control {
   background-size: 1.5em 1.5em;
 }
 
-textarea.form-control {
+textarea.form-controll {
   resize: vertical;
   min-height: 100px;
   padding: var(--spacing-md);

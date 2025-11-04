@@ -109,7 +109,7 @@ const Gallery = () => {
 
   return (
     <div className="gallery">
-      <!-- Hero Section -->
+      {/* <!-- Hero Section --> */}
       <section className="gallery-hero">
         <div className="container">
           <motion.div
@@ -124,7 +124,7 @@ const Gallery = () => {
         </div>
       </section>
 
-      <!-- Category Filter -->
+      {/* <!-- Category Filter --> */}
       <section className="section category-section">
         <div className="container">
           <motion.div
@@ -147,7 +147,7 @@ const Gallery = () => {
         </div>
       </section>
 
-      <!-- Gallery Grid -->
+      {/* <!-- Gallery Grid --> */}
       <section className="section gallery-grid-section bg-off-white">
         <div className="container">
           <div className="gallery-grid">
@@ -175,7 +175,7 @@ const Gallery = () => {
         </div>
       </section>
 
-      <!-- Lightbox -->
+      {/* <!-- Lightbox --> */}
       <AnimatePresence>
         {selectedImage && (
           <motion.div

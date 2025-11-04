@@ -9,6 +9,7 @@ import Booking from './pages/Booking/Booking';
 import About from './pages/About/About';
 import Contact from './pages/Contact/Contact';
 import RoomDetails from './pages/RoomDetails/RoomDetails';
+import GalleryPreview from './components/GalleryPreview/GalleryPreview';
 
 // Components
 import Header from './components/Header/Header';
@@ -37,6 +38,7 @@ function App() {
             <Route path="/booking" element={<Booking />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/gallery" element={<GalleryPreview />} />
           </Routes>
         </motion.main>
         <Footer />
