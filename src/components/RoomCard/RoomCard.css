@@ -8,6 +8,8 @@
   overflow: hidden;
   box-shadow: var(--shadow-md);
   transition: all var(--transition-base);
+   line-height: 1.6;
+  
 }
 
 .room-card:hover {

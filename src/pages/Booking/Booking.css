@@ -114,6 +114,7 @@
   padding: var(--spacing-2xl);
   border-radius: var(--border-radius-lg);
   box-shadow: var(--shadow-md);
+   line-height: 3.6;
 }
 
 .booking-form h3 {
