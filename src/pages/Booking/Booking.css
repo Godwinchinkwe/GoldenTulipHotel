@@ -338,6 +338,51 @@ textarea.form-controll {
   margin-top: var(--spacing-lg);
 }
 
+
+/* Bank Details Section */
+.bank-details {
+  background-color: var(--color-beige);
+  padding: var(--spacing-lg);
+  border-radius: var(--border-radius-md);
+  margin-top: var(--spacing-lg);
+  line-height: 1.8;
+}
+
+.bank-details h4 {
+  color: var(--color-secondary);
+  font-weight: 600;
+  margin-bottom: var(--spacing-md);
+}
+
+.file-upload input[type="file"] {
+  margin-top: var(--spacing-sm);
+  padding: var(--spacing-sm);
+  border: 1px solid var(--color-gray-light);
+  border-radius: var(--border-radius-sm);
+}
+
+.file-upload small {
+  display: block;
+  margin-top: var(--spacing-sm);
+  color: var(--color-gray);
+  font-size: var(--font-size-sm);
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.radio-group label {
+  font-size: var(--font-size-sm);
+  color: var(--color-secondary);
+}
+
+
+
+
+
 /* Mobile Responsive */
 @media (max-width: 768px) {
   .booking-hero {

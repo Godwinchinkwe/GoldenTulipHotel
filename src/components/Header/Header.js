@@ -44,7 +44,7 @@ const Header = () => {
           <div className="header-content">
             <Link to="/" className="logo">
               <FaHotel className="logo-icon" />
-              <span className="logo-text">Luxuria Grand</span>
+              <span className="logo-text">Golden Tulip</span>
             </Link>
 
             <nav className={`nav-menu ${isMenuOpen ? 'open' : ''}`}>

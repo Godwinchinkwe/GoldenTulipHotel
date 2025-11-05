@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FaCalendarAlt, FaUser, FaEnvelope, FaPhone, FaCreditCard, FaCheck } from 'react-icons/fa';
+import { FaCalendarAlt, FaUser, FaEnvelope, FaPhone, FaCheck } from 'react-icons/fa';
 import './Booking.css';
 
 const Booking = () => {
@@ -19,8 +19,10 @@ const Booking = () => {
     email: '',
     phone: '',
     specialRequests: '',
-    paymentMethod: 'credit-card'
+    paymentChoice: '', // Deposit Now or Pay on Arrival
+    paymentProof: null // file
   });
+  const [bookingStatus, setBookingStatus] = useState('');
 
   const rooms = {
     deluxe: { name: 'Deluxe Room', price: 199 },
@@ -31,7 +33,6 @@ const Booking = () => {
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const roomType = params.get('room');
-    
     if (roomType && rooms[roomType]) {
       setBookingData(prev => ({
         ...prev,
@@ -42,21 +43,23 @@ const Booking = () => {
 
   const calculateTotal = () => {
     if (!bookingData.checkIn || !bookingData.checkOut || !bookingData.roomType) return 0;
-    
     const checkIn = new Date(bookingData.checkIn);
     const checkOut = new Date(bookingData.checkOut);
     const nights = Math.ceil((checkOut - checkIn) / (1000 * 60 * 60 * 24));
     const roomPrice = rooms[bookingData.roomType]?.price || 0;
-    
     return nights * roomPrice;
   };
 
   const handleInputChange = (e) => {
     const { name, value, type } = e.target;
-    setBookingData(prev => ({
-      ...prev,
-      [name]: type === 'number' ? parseInt(value) || 0 : value
-    }));
+    if (type === 'file') {
+      setBookingData(prev => ({ ...prev, [name]: e.target.files[0] }));
+    } else {
+      setBookingData(prev => ({
+        ...prev,
+        [name]: type === 'number' ? parseInt(value) || 0 : value
+      }));
+    }
   };
 
   const handleStep1Next = (e) => {
@@ -77,11 +80,32 @@ const Booking = () => {
     e.preventDefault();
     setIsLoading(true);
 
-    // Simulate booking submission
+    // Placeholder backend-ready structure
+    const payload = {
+      ...bookingData,
+      total: calculateTotal(),
+      status: bookingData.paymentChoice === 'arrival' ? 'confirmed' : 'pending'
+    };
+
+    try {
+      await fetch('/api/bookings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+    } catch (error) {
+      console.error('Error submitting booking:', error);
+    }
+
     setTimeout(() => {
       setIsLoading(false);
-      setCurrentStep(4); // Confirmation step
-    }, 2000);
+      setBookingStatus(
+        bookingData.paymentChoice === 'arrival'
+          ? 'confirmed'
+          : 'pending'
+      );
+      setCurrentStep(4);
+    }, 1500);
   };
 
   const formatDate = (dateString) => {
@@ -94,7 +118,7 @@ const Booking = () => {
 
   return (
     <div className="booking">
-      {/* <!-- Hero Section --> */}
+      {/* Hero Section */}
       <section className="booking-hero">
         <div className="container">
           <motion.div
@@ -109,7 +133,7 @@ const Booking = () => {
         </div>
       </section>
 
-      {/* <!-- Booking Steps --> */}
+      {/* Booking Steps */}
       <section className="section booking-steps-section">
         <div className="container">
           <div className="booking-steps">
@@ -132,7 +156,7 @@ const Booking = () => {
         </div>
       </section>
 
-      {/* <!-- Booking Form --> */}
+      {/* Booking Form */}
       <section className="section booking-form-section">
         <div className="container">
           <motion.div
@@ -145,7 +169,7 @@ const Booking = () => {
             {currentStep === 1 && (
               <form className="booking-form" onSubmit={handleStep1Next}>
                 <h3>Step 1: Room Selection</h3>
-                
+
                 <div className="form-group">
                   <label htmlFor="roomType">Room Type *</label>
                   <select
@@ -169,7 +193,7 @@ const Booking = () => {
                   <div className="form-group">
                     <label htmlFor="checkIn">Check-in Date *</label>
                     <div className="input-with-icon">
-                      {/* <FaCalendarAlt className="input-icon" /> */}
+                      <FaCalendarAlt className="input-icon" />
                       <input
                         type="date"
                         id="checkIn"
@@ -186,7 +210,7 @@ const Booking = () => {
                   <div className="form-group">
                     <label htmlFor="checkOut">Check-out Date *</label>
                     <div className="input-with-icon">
-                      {/* <FaCalendarAlt className="input-icon" /> */}
+                      <FaCalendarAlt className="input-icon" />
                       <input
                         type="date"
                         id="checkOut"
@@ -211,7 +235,7 @@ const Booking = () => {
                     required
                     className="form-control"
                   >
-                    {[1, 2, 3,].map(num => (
+                    {[1, 2, 3].map(num => (
                       <option key={num} value={num}>{num} Guest{num > 1 ? 's' : ''}</option>
                     ))}
                   </select>
@@ -226,7 +250,7 @@ const Booking = () => {
             {currentStep === 2 && (
               <form className="booking-form" onSubmit={handleStep2Next}>
                 <h3>Step 2: Guest Information</h3>
-                
+
                 <div className="form-row">
                   <div className="form-group">
                     <label htmlFor="firstName">First Name *</label>
@@ -265,7 +289,7 @@ const Booking = () => {
 
                 <div className="form-row">
                   <div className="form-group">
-                    <label htmlFor="email">    Email Address *</label>
+                    <label htmlFor="email">Email Address *</label>
                     <div className="input-with-icon">
                       <FaEnvelope className="input-icon" />
                       <input
@@ -329,62 +353,70 @@ const Booking = () => {
 
             {currentStep === 3 && (
               <form className="booking-form" onSubmit={handleBookingSubmit}>
-                <h3>Step 3: Payment Information</h3>
-                
+                <h3>Step 3: Payment</h3>
+
+                {/* Booking Summary */}
                 <div className="booking-summary">
                   <h4>Booking Summary</h4>
-                  <div className="summary-item">
-                    <span>Room Type:</span>
-                    <strong>{rooms[bookingData.roomType]?.name}</strong>
-                  </div>
-                  <div className="summary-item">
-                    <span>Check-in:</span>
-                    <strong>{formatDate(bookingData.checkIn)}</strong>
-                  </div>
-                  <div className="summary-item">
-                    <span>Check-out:</span>
-                    <strong>{formatDate(bookingData.checkOut)}</strong>
-                  </div>
-                  <div className="summary-item">
-                    <span>Guests:</span>
-                    <strong>{bookingData.guests} Guest{bookingData.guests > 1 ? 's' : ''}</strong>
-                  </div>
-                  <div className="summary-total">
-                    <span>Total Amount:</span>
-                    <strong>${calculateTotal()}</strong>
-                  </div>
+                  <div className="summary-item"><span>Room Type:</span><strong>{rooms[bookingData.roomType]?.name}</strong></div>
+                  <div className="summary-item"><span>Check-in:</span><strong>{formatDate(bookingData.checkIn)}</strong></div>
+                  <div className="summary-item"><span>Check-out:</span><strong>{formatDate(bookingData.checkOut)}</strong></div>
+                  <div className="summary-item"><span>Guests:</span><strong>{bookingData.guests}</strong></div>
+                  <div className="summary-total"><span>Total Amount:</span><strong>${calculateTotal()}</strong></div>
                 </div>
 
+                {/* Payment Choice */}
                 <div className="form-group">
-                  <label htmlFor="paymentMethod">Payment Method *</label>
-                  <select
-                    id="paymentMethod"
-                    name="paymentMethod"
-                    value={bookingData.paymentMethod}
-                    onChange={handleInputChange}
-                    required
-                    className="form-control"
-                  >
-                    <option value="credit-card">Credit Card</option>
-                    <option value="debit-card">Debit Card</option>
-                    <option value="paypal">PayPal</option>
-                  </select>
+                  <label>Choose Payment Option *</label>
+                  <div className="radio-group">
+                    <label>
+                      <input
+                        type="radio"
+                        name="paymentChoice"
+                        value="deposit"
+                        checked={bookingData.paymentChoice === 'deposit'}
+                        onChange={handleInputChange}
+                        required
+                      /> Make a Deposit Now
+                    </label>
+                    <label>
+                      <input
+                        type="radio"
+                        name="paymentChoice"
+                        value="arrival"
+                        checked={bookingData.paymentChoice === 'arrival'}
+                        onChange={handleInputChange}
+                      /> Pay on Arrival
+                    </label>
+                  </div>
                 </div>
 
-                <p className="payment-note">
-                  You will be redirected to our secure payment gateway to complete your booking.
-                </p>
+                {bookingData.paymentChoice === 'deposit' && (
+                  <div className="bank-details">
+                    <h4>Bank Transfer Details</h4>
+                    <p><strong>Bank Name:</strong> Access Bank</p>
+                    <p><strong>Account Name:</strong> Godwin Odinakachi Chinkwe</p>
+                    <p><strong>Account Number:</strong> 0011085603</p>
+                    <p className="payment-note">Upload your payment proof after transfer. Preferred file format: PDF.</p>
+
+                    <div className="form-group file-upload">
+                      <label htmlFor="paymentProof">Upload Payment Proof *</label>
+                      <input
+                        type="file"
+                        id="paymentProof"
+                        name="paymentProof"
+                        onChange={handleInputChange}
+                        required
+                      />
+                      <small>Your payment will be verified manually within 24 hours.</small>
+                    </div>
+                  </div>
+                )}
 
                 <div className="form-actions">
-                  <button
-                    type="button"
-                    onClick={() => setCurrentStep(2)}
-                    className="btn btn-outline"
-                  >
-                    Back
-                  </button>
+                  <button type="button" onClick={() => setCurrentStep(2)} className="btn btn-outline">Back</button>
                   <button type="submit" className="btn btn-primary" disabled={isLoading}>
-                    {isLoading ? 'Processing... ' : 'Complete Booking'}
+                    {isLoading ? 'Processing...' : 'Complete Booking'}
                   </button>
                 </div>
               </form>
@@ -392,13 +424,20 @@ const Booking = () => {
 
             {currentStep === 4 && (
               <div className="booking-confirmation">
-                <div className="confirmation-icon">
-                  <FaCheck />
-                </div>
-                <h3>Booking Confirmed!</h3>
-                <p>Thank you for choosing Luxuria Grand Hotel.</p>
-                <p>We've sent a confirmation email to {bookingData.email}</p>
-                
+                <div className="confirmation-icon"><FaCheck /></div>
+                {bookingStatus === 'confirmed' ? (
+                  <>
+                    <h3>Booking Confirmed!</h3>
+                    <p>Thank you for choosing Airport Golden Tulip Hotel.</p>
+                    <p>You chose to pay on arrival.</p>
+                  </>
+                ) : (
+                  <>
+                    <h3>Booking Pending Verification</h3>
+                    <p>We’ve received your booking and payment proof.</p>
+                    <p>You will receive an email once your payment is confirmed.</p>
+                  </>
+                )}
                 <div className="confirmation-details">
                   <div className="detail-item">
                     <span>Booking Reference:</span>
@@ -409,14 +448,8 @@ const Booking = () => {
                     <strong>${calculateTotal()}</strong>
                   </div>
                 </div>
-
                 <div className="confirmation-actions">
-                  <button
-                    onClick={() => navigate('/')}
-                    className="btn btn-primary"
-                  >
-                    Return to Home
-                  </button>
+                  <button onClick={() => navigate('/')} className="btn btn-primary">Return to Home</button>
                 </div>
               </div>
             )}

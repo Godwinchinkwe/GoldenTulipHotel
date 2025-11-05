@@ -45,10 +45,10 @@ const Footer = () => {
           >
             <div className="footer-logo">
               <FaHotel className="logo-icon" />
-              <span>Luxuria Grand</span>
+              <span>Golden Tulip</span>
             </div>
             <p className="footer-description">
-              Experience luxury and comfort at its finest. Luxuria Grand Hotel offers 
+              Experience luxury and comfort at its finest. Airport Golden Tulip Hotel offers 
               unparalleled hospitality in the heart of the city.
             </p>
             <div className="social-links">
@@ -124,7 +124,7 @@ const Footer = () => {
               </div>
               <div className="contact-item">
                 <FaEnvelope className="contact-icon" />
-                <span><a href="mailto:info@luxuriagrandhotel.com">info@luxuriagrandhotel.com</a></span>
+                <span><a href="mailto:chinkwegodwin@gmail.com">chinkwegodwin@gmail.com.com</a></span>
               </div>
               <div className="contact-item">
                 <FaClock className="contact-icon" />
@@ -136,7 +136,7 @@ const Footer = () => {
 
         {/* <!-- Footer Bottom --> */}
         <div className="footer-bottom">
-          <p>&copy; {currentYear} Luxuria Grand Hotel. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+          <p>&copy; {currentYear} Golden Tulip Hotel. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
         </div>
       </div>
     </footer>

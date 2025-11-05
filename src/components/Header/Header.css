@@ -8,6 +8,7 @@
   left: 0;
   width: 100%;
   background-color: var(--color-white);
+  /* background-color: #1a1a1a; */
   z-index: 1000;
   transition: all var(--transition-base);
   box-shadow: var(--shadow-sm);

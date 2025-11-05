@@ -14,7 +14,7 @@ const Hero = () => {
           transition={{ duration: 0.8 }}
           className="hero-text"
         >
-          <h1>Luxuria Grand Hotel</h1>
+          <h1>Airport Golden Tulip Hotel</h1>
           <p className="tagline">Experience Luxury Like Never Before</p>
           <p>
             Welcome to Luxuria Grand Hotel, where luxury meets comfort in the heart of the city. 
