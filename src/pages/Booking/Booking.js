@@ -80,6 +80,48 @@ const Booking = () => {
     e.preventDefault();
     setIsLoading(true);
 
+      try {
+    // Build multipart/form-data request body
+    const formData = new FormData();
+    formData.append('roomType', bookingData.roomType);
+    formData.append('checkIn', bookingData.checkIn);
+    formData.append('checkOut', bookingData.checkOut);
+    formData.append('guests', bookingData.guests);
+    formData.append('firstName', bookingData.firstName);
+    formData.append('lastName', bookingData.lastName);
+    formData.append('email', bookingData.email);
+    formData.append('phone', bookingData.phone);
+    formData.append('specialRequests', bookingData.specialRequests);
+    formData.append('paymentChoice', bookingData.paymentChoice);
+    formData.append('total', calculateTotal());
+
+    // Add file only if user uploaded proof
+    if (bookingData.paymentProof) {
+      formData.append('paymentProof', bookingData.paymentProof);
+    }
+
+    const res = await fetch('http://localhost:5000/api/bookings', {
+      method: 'POST',
+      body: formData // no Content-Type header — fetch sets it automatically
+    });
+
+    if (!res.ok) {
+      throw new Error('Failed to submit booking');
+    }
+
+    const data = await res.json();
+
+    // Update UI based on booking status
+    setBookingStatus(data.status);
+    setIsLoading(false);
+    setCurrentStep(4);
+
+  } catch (error) {
+    console.error('Error submitting booking:', error);
+    alert('Something went wrong while submitting your booking. Please try again.');
+    setIsLoading(false);
+  }
+
     // Placeholder backend-ready structure
     const payload = {
       ...bookingData,

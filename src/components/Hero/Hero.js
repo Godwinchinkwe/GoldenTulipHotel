@@ -17,7 +17,7 @@ const Hero = () => {
           <h1>Airport Golden Tulip Hotel</h1>
           <p className="tagline">Experience Luxury Like Never Before</p>
           <p>
-            Welcome to Luxuria Grand Hotel, where luxury meets comfort in the heart of the city. 
+            Welcome to Airport Golden Tulip Hotel, where luxury meets comfort in the heart of the city. 
             Experience world-class hospitality with our premium accommodations and exceptional services.
           </p>
         </motion.div>

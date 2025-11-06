@@ -24,7 +24,7 @@ const LoadingScreen = () => {
         >
           <div className="loader">
             <div className="loader-spinner"></div>
-            <p>Loading Luxuria Grand Hotel...</p>
+            <p>Airport Golden Tulip Hotel...</p>
           </div>
         </motion.div>
       )}
