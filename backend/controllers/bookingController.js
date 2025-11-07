@@ -46,7 +46,7 @@ const createBooking = asyncHandler(async (req, res) => {
   const status = paymentChoice === 'arrival' ? 'confirmed' : 'pending';
 
   // Save booking to DB
-  const booking = await Booking.create({
+  const booking = await Bookings.create({
     roomType,
     checkIn,
     checkOut,

@@ -2,7 +2,7 @@
 {
   "name": "airport-booking-backend",
   "version": "1.0.0",
-  "description": "Backend for Luxuria Grand Hotel booking (Node, Express, MongoDB, Nodemailer, Multer)",
+  "description": "Backend for Airport Golden Tulip Hotel booking (Node, Express, MongoDB, Nodemailer, Multer)",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
