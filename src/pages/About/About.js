@@ -45,11 +45,8 @@ const About = () => {
             transition={{ duration: 0.8 }}
             className="hero-content text-center"
           >
-            <h1>About Luxuria Grand Hotel</h1>
-            <p>
-              Where luxury meets legacy. For over 25 years, we have been setting the standard 
-              for exceptional hospitality and creating unforgettable experiences for our guests.
-            </p>
+            <h1>About Airport Golden Tulip Hotel</h1>
+           
           </motion.div>
         </div>
       </section>
@@ -67,7 +64,7 @@ const About = () => {
             >
               <h2>Our Story</h2>
               <p>
-                Founded in 1998, Luxuria Grand Hotel has been a beacon of luxury hospitality in the heart of New York. 
+                Founded in 1998, Airport Golden Tulip Hotel has been a beacon of luxury hospitality in the heart of New York. 
                 What started as a vision to create the ultimate luxury experience has grown into an iconic destination 
                 for discerning travelers from around the world.
               </p>

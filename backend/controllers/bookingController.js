@@ -138,7 +138,7 @@ Special Requests: ${specialRequests || 'None'}
  * Returns all bookings (for admin dashboard)
  */
 const getBookings = asyncHandler(async (req, res) => {
-  const bookings = await Booking.find().sort({ createdAt: -1 });
+  const bookings = await Bookings.find().sort({ createdAt: -1 });
   res.json(bookings);
 });
 

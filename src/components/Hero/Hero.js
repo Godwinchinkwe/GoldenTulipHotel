@@ -16,10 +16,10 @@ const Hero = () => {
         >
           <h1>Airport Golden Tulip Hotel</h1>
           <p className="tagline">Experience Luxury Like Never Before</p>
-          <p>
+          {/* <p>
             Welcome to Airport Golden Tulip Hotel, where luxury meets comfort in the heart of the city. 
             Experience world-class hospitality with our premium accommodations and exceptional services.
-          </p>
+          </p> */}
         </motion.div>
 
         <motion.div
@@ -45,7 +45,7 @@ const Hero = () => {
           <Link to="/booking" className="btn btn-primary">
             Book Your Stay
           </Link>
-          <Link to="/rooms" className="btn btn-outline">
+          <Link to="/rooms" className="btn btn-primary ">
             View Rooms
           </Link>
         </motion.div>

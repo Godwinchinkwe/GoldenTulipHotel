@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaBars, FaTimes, FaHotel } from 'react-icons/fa';
 import './Header.css';
+import logo from "../../Assets/logo.png"
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -17,6 +18,10 @@ const Header = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+    function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 
   const navItems = [
     { path: '/', label: 'Home' },
@@ -42,16 +47,17 @@ const Header = () => {
       >
         <div className="container">
           <div className="header-content">
-            <Link to="/" className="logo">
-              <FaHotel className="logo-icon" />
-              <span className="logo-text">Golden Tulip</span>
+            <Link onClick={scrollToTop} to="/" className="logo">
+              {/* <FaHotel className="logo-icon" /> */}
+              <img src={logo} className='logosize' alt="" />
+              {/* <span className="logo-text">Golden Tulip</span> */}
             </Link>
 
             <nav className={`nav-menu ${isMenuOpen ? 'open' : ''}`}>
               <ul className="nav-list">
                 {navItems.map((item) => (
                   <li key={item.path} className="nav-item">
-                    <Link
+                    <Link 
                       to={item.path}
                       className={`nav-link ${isActive(item.path) ? 'active' : ''}`}
                       onClick={() => setIsMenuOpen(false)}
@@ -64,7 +70,7 @@ const Header = () => {
             </nav>
 
             <div className="header-actions">
-              <Link to="/booking" className="btn btn-primary">
+              <Link onClick={scrollToTop} to="/booking" className="btn btn-primary">
                 Book Now
               </Link>
               

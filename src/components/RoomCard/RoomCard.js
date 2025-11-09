@@ -15,6 +15,10 @@ const RoomCard = ({ room }) => {
     return FaStar;
   };
 
+      function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
   return (
     <motion.div
       whileHover={{ y: -5 }}
@@ -53,7 +57,7 @@ const RoomCard = ({ room }) => {
             <span className="rating-text">(4.9)</span>
           </div>
           
-          <Link to={`/rooms/${room.id}`} className="room-link">
+          <Link onClick={scrollToTop} to={`/rooms/${room.id}`} className="room-link">
             View Details
             <FiChevronRight />
           </Link>

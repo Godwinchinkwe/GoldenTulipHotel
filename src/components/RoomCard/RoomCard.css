@@ -41,19 +41,22 @@
   color: var(--color-white);
   padding: var(--spacing-sm) var(--spacing-md);
   border-radius: var(--border-radius-md);
-  font-weight: 600;
+  font-weight: 200;
   box-shadow: var(--shadow-md);
 }
 
 .price-amount {
-  font-size: var(--font-size-xl);
+  /* font-size: var(--font-size-xl); */
+  /* font-size: 5px; */
   display: block;
   line-height: 1;
 }
 
 .price-period {
-  font-size: var(--font-size-xs);
+  /* font-size: var(--font-size-xs); */
+  font-size: 5px;
   opacity: 0.9;
+  color: black;
 }
 
 .room-content {

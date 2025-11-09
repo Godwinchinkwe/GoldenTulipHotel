@@ -23,7 +23,7 @@ const Home = () => {
       id: 'deluxe',
       title: 'Deluxe Room',
       description: 'Comfortable and elegant rooms with modern amenities',
-      price: 199,
+      price: 150000,
       image: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600',
       features: ['King Size Bed', 'City View', 'Free WiFi', 'Mini Bar', 'Work Desk']
     },
@@ -31,7 +31,7 @@ const Home = () => {
       id: 'executive',
       title: 'Executive Room',
       description: 'Premium workspace with luxurious accommodations',
-      price: 299,
+      price: 180000,
       image: 'https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=600',
       features: ['Executive Lounge Access', 'Premium Amenities', 'Work Area', 'City View', 'Complimentary Breakfast']
     },
@@ -39,7 +39,7 @@ const Home = () => {
       id: 'suite',
       title: 'Luxury Suite',
       description: 'Ultimate luxury with separate living area',
-      price: 499,
+      price: 300000,
       image: 'https://images.unsplash.com/photo-1591088398332-8a7791972843?w=600',
       features: ['Separate Living Area', 'Premium Suite', 'Butler Service', 'Panoramic View', 'Spa Access']
     }
@@ -133,6 +133,7 @@ const Home = () => {
 
       {/* <!-- Gallery Preview --> */}
       <GalleryPreview />
+      
 
       {/* <!-- CTA Section --> */}
       <section className="section cta-section bg-primary">

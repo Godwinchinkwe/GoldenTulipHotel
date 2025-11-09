@@ -25,9 +25,9 @@ const Booking = () => {
   const [bookingStatus, setBookingStatus] = useState('');
 
   const rooms = {
-    deluxe: { name: 'Deluxe Room', price: 199 },
-    executive: { name: 'Executive Room', price: 299 },
-    suite: { name: 'Luxury Suite', price: 499 }
+    deluxe: { name: 'Deluxe Room', price:150000},
+    executive: { name: 'Executive Room', price: 180000 },
+    suite: { name: 'Luxury Suite', price:300000 }
   };
 
   useEffect(() => {
@@ -80,12 +80,24 @@ const Booking = () => {
     e.preventDefault();
     setIsLoading(true);
 
+    const setTimeTo1230PM = (dateString) => {
+  const date = new Date(dateString);
+  date.setHours(12, 30, 0, 0);
+  return date.toISOString();
+};
+
+const checkInAt1230 = setTimeTo1230PM(bookingData.checkIn);
+const checkOutAt1230 = setTimeTo1230PM(bookingData.checkOut);
+
       try {
     // Build multipart/form-data request body
     const formData = new FormData();
     formData.append('roomType', bookingData.roomType);
-    formData.append('checkIn', bookingData.checkIn);
-    formData.append('checkOut', bookingData.checkOut);
+    formData.append('checkIn', checkInAt1230);
+    formData.append('checkOut', checkOutAt1230);
+
+    // formData.append('checkIn', bookingData.checkIn);
+    // formData.append('checkOut', bookingData.checkOut);
     formData.append('guests', bookingData.guests);
     formData.append('firstName', bookingData.firstName);
     formData.append('lastName', bookingData.lastName);
@@ -105,6 +117,8 @@ const Booking = () => {
       body: formData // no Content-Type header — fetch sets it automatically
     });
 
+    
+
     if (!res.ok) {
       throw new Error('Failed to submit booking');
     }
@@ -121,6 +135,8 @@ const Booking = () => {
     alert('Something went wrong while submitting your booking. Please try again.');
     setIsLoading(false);
   }
+
+
 
     // Placeholder backend-ready structure
     const payload = {
@@ -401,8 +417,11 @@ const Booking = () => {
                 <div className="booking-summary">
                   <h4>Booking Summary</h4>
                   <div className="summary-item"><span>Room Type:</span><strong>{rooms[bookingData.roomType]?.name}</strong></div>
-                  <div className="summary-item"><span>Check-in:</span><strong>{formatDate(bookingData.checkIn)}</strong></div>
-                  <div className="summary-item"><span>Check-out:</span><strong>{formatDate(bookingData.checkOut)}</strong></div>
+                  <div className="summary-item"><span>Check-in:</span><strong>{formatDate(bookingData.checkIn)} at 12:30 PM</strong></div>
+                  <div className="summary-item"><span>Check-out:</span><strong>{formatDate(bookingData.checkOut)} at 12:30 PM</strong></div>
+
+                  {/* <div className="summary-item"><span>Check-in:</span><strong>{formatDate(bookingData.checkIn)}</strong></div>
+                  <div className="summary-item"><span>Check-out:</span><strong>{formatDate(bookingData.checkOut)}</strong></div> */}
                   <div className="summary-item"><span>Guests:</span><strong>{bookingData.guests}</strong></div>
                   <div className="summary-total"><span>Total Amount:</span><strong>${calculateTotal()}</strong></div>
                 </div>

@@ -5,17 +5,18 @@ import { FaFilter, FaSearch, FaStar, FaWifi, FaParking, FaSwimmingPool, FaUtensi
 import RoomCard from '../../components/RoomCard/RoomCard';
 import './Rooms.css';
 
+
 const Rooms = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
-  const [priceRange, setPriceRange] = useState([0, 1000]);
+  const [priceRange, setPriceRange] = useState([0, 300000]);
 
   const rooms = [
     {
       id: 'deluxe',
       title: 'Deluxe Room',
       description: 'Comfortable and elegant rooms with modern amenities',
-      price: 199,
+      price: 150000,
       image: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600',
       features: ['King Size Bed', 'City View', 'Free WiFi', 'Mini Bar', 'Work Desk'],
       category: 'standard',
@@ -25,7 +26,7 @@ const Rooms = () => {
       id: 'executive',
       title: 'Executive Room',
       description: 'Premium workspace with luxurious accommodations',
-      price: 299,
+      price: 180000,
       image: 'https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=600',
       features: [
         'Executive Lounge Access', 'Premium Amenities', 'Work Area', 
@@ -38,7 +39,7 @@ const Rooms = () => {
       id: 'suite',
       title: 'Luxury Suite',
       description: 'Ultimate luxury with separate living area',
-      price: 499,
+      price: 300000,
       image: 'https://images.unsplash.com/photo-1591088398332-8a7791972843?w=600',
       features: [
         'Separate Living Area', 'Premium Suite', 'Butler Service', 
@@ -47,25 +48,25 @@ const Rooms = () => {
       category: 'luxury',
       capacity: 4
     },
-    {
-      id: 'presidential',
-      title: 'Presidential Suite',
-      description: 'The pinnacle of luxury and sophistication',
-      price: 899,
-      image: 'https://images.unsplash.com/photo-1591088398332-8a7791972843?w=600',
-      features: [
-        'Private Butler', 'Jacuzzi', 'Private Bar', 'Conference Room', 'Helicopter Access'
-      ],
-      category: 'luxury',
-      capacity: 6
-    }
+    // {
+    //   id: 'presidential',
+    //   title: 'Presidential Suite',
+    //   description: 'The pinnacle of luxury and sophistication',
+    //   price: 899,
+    //   image: 'https://images.unsplash.com/photo-1591088398332-8a7791972843?w=600',
+    //   features: [
+    //     'Private Butler', 'Jacuzzi', 'Private Bar', 'Conference Room', 'Helicopter Access'
+    //   ],
+    //   category: 'luxury',
+    //   capacity: 6
+    // }
   ];
 
   const categories = [
     { id: 'all', name: 'All Rooms', count: rooms.length },
-    { id: 'standard', name: 'Standard', count: rooms.filter(r => r.category === 'standard').length },
-    { id: 'business', name: 'Business', count: rooms.filter(r => r.category === 'business').length },
-    { id: 'luxury', name: 'Luxury', count: rooms.filter(r => r.category === 'luxury').length }
+    { id: 'standard', name: 'Deluxe', count: rooms.filter(r => r.category === 'standard').length },
+    { id: 'business', name: 'Executive', count: rooms.filter(r => r.category === 'business').length },
+    { id: 'luxury', name: 'Suite', count: rooms.filter(r => r.category === 'luxury').length }
   ];
 
   const filteredRooms = rooms.filter(room => {
