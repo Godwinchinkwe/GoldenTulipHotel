@@ -491,7 +491,7 @@ const checkOutAt1230 = setTimeTo1230PM(bookingData.checkOut);
 
                 <div className="form-actions">
                   <button type="button" onClick={() => { scrollToTop(); setCurrentStep(2)}} className="btn btn-outline">Back</button>
-                  <button type="submit" onClick={scrollToTop} className="btn btn-primary" disabled={isLoading}>
+                  <button type="submit" className="btn btn-primary" disabled={isLoading}>
                     {isLoading ? 'Processing...' : 'Complete Booking'}
                   </button>
                 </div>

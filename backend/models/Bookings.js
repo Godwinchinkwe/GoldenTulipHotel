@@ -19,7 +19,9 @@ const bookingSchema = new mongoose.Schema({
   },
   total: { type: Number, required: true },
   status: { type: String, enum: ['pending', 'confirmed'], default: 'pending' },
-  createdAt: { type: Date, default: Date.now }
+  createdAt: { type: Date, default: Date.now },
+  bookingReference: { type: String, required: true, unique: true }
+
 });
 
 module.exports = mongoose.model('Booking', bookingSchema);

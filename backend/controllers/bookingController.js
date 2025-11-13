@@ -7,6 +7,15 @@ const sendMail = require('../utils/sendEmail');
  * POST /api/bookings
  * Accepts form-data (including file via multer)
  */
+
+const formatNaira = (amount) => {
+  return new Intl.NumberFormat("en-NG", {
+    style: "currency",
+    currency: "NGN",
+    minimumFractionDigits: 0
+  }).format(Number(amount));
+};
+
 const createBooking = asyncHandler(async (req, res) => {
   // Multer adds file to req.file (if provided)
   const {
@@ -23,6 +32,8 @@ const createBooking = asyncHandler(async (req, res) => {
     total
   } = req.body;
 
+  
+
   // Simple validation (more robust validation can be added)
   if (!roomType || !checkIn || !checkOut || !firstName || !lastName || !email || !phone || !paymentChoice) {
     res.status(400);
@@ -31,6 +42,10 @@ const createBooking = asyncHandler(async (req, res) => {
 
   // Compute nights if not provided
   const nights = Math.ceil((new Date(checkOut) - new Date(checkIn)) / (1000 * 60 * 60 * 24)) || 1;
+
+  // Generate 9-digit reference (100,000,000 → 999,999,999)
+const bookingReference = Math.floor(100000000 + Math.random() * 900000000).toString();
+
 
   // Build paymentProof object if file exists
   let paymentProof = {};
@@ -60,12 +75,13 @@ const createBooking = asyncHandler(async (req, res) => {
     paymentChoice,
     paymentProof,
     total: total || 0,
-    status
+    status,
+    bookingReference
   });
 
   // Prepare email content
   const bookingDetailsText = `
-Booking Reference: ${booking._id}
+Booking Reference: ${booking.bookingReference}
 Name: ${firstName} ${lastName}
 Email: ${email}
 Phone: ${phone}
@@ -74,7 +90,7 @@ Check-in: ${new Date(checkIn).toLocaleString()}
 Check-out: ${new Date(checkOut).toLocaleString()}
 Nights: ${nights}
 Guests: ${guests}
-Total: $${booking.total}
+Total:${formatNaira(booking.total)}
 Payment Choice: ${paymentChoice}
 Status: ${status}
 Special Requests: ${specialRequests || 'None'}
