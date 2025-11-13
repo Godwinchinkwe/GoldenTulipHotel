@@ -5,6 +5,9 @@ import { FaStar } from 'react-icons/fa';
 import './Hero.css';
 
 const Hero = () => {
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
   return (
     <section className="hero">
       <div className="hero-content">
@@ -42,10 +45,10 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="hero-buttons"
         >
-          <Link to="/booking" className="btn btn-primary">
+          <Link to="/booking" onClick={scrollToTop} className="btn btn-primary">
             Book Your Stay
           </Link>
-          <Link to="/rooms" className="btn btn-primary ">
+          <Link to="/rooms" onClick={scrollToTop} className="btn btn-primary ">
             View Rooms
           </Link>
         </motion.div>

@@ -9,6 +9,10 @@ import GalleryPreview from '../../components/GalleryPreview/GalleryPreview';
 import './Home.css';
 
 const Home = () => {
+
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
   const amenities = [
     { icon: FaSwimmingPool, title: 'Swimming Pool', description: 'Olympic-size heated pool' },
     { icon: FaWifi, title: 'Free WiFi', description: 'High-speed internet access' },
@@ -123,7 +127,7 @@ const Home = () => {
             transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <Link to="/rooms" className="btn btn-outline">
+            <Link to="/rooms" onClick={scrollToTop} className="btn btn-outline">
               View All Rooms
               <FiChevronRight className="btn-icon" />
             </Link>
@@ -149,7 +153,7 @@ const Home = () => {
             <p>
               Book your stay at Luxuria Grand Hotel and enjoy world-class hospitality
             </p>
-            <Link to="/booking" className="btn btn-white">
+            <Link to="/booking" onClick={scrollToTop} className="btn btn-white">
               Book Now
             </Link>
           </motion.div>

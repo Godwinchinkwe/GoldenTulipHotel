@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FaHotel, FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock } from 'react-icons/fa';
+import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock } from 'react-icons/fa';
 import { FiFacebook, FiTwitter, FiInstagram, FiLinkedin } from 'react-icons/fi';
 import './Footer.css';
+import Logo from "../../Assets/logo.png"
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -44,8 +45,9 @@ const Footer = () => {
             className="footer-section footer-company"
           >
             <div className="footer-logo">
-              <FaHotel className="logo-icon" />
-              <span>Golden Tulip</span>
+              {/* <FaHotel className="logo-icon" /> */}
+              {/* <span>Golden Tulip</span> */}
+              <img src={Logo} className="logo-icon" alt=""/>
             </div>
             <p className="footer-description">
               Experience luxury and comfort at its finest. Airport Golden Tulip Hotel offers 

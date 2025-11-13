@@ -11,6 +11,7 @@ const Booking = () => {
 }
   const location = useLocation();
   const navigate = useNavigate();
+  const [backendBooking, setBackendBooking] = useState(null);
   const [currentStep, setCurrentStep] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [bookingData, setBookingData] = useState({
@@ -128,6 +129,7 @@ const checkOutAt1230 = setTimeTo1230PM(bookingData.checkOut);
     }
 
     const data = await res.json();
+    setBackendBooking(data);
 
     // Update UI based on booking status
     setBookingStatus(data.status);
@@ -496,7 +498,7 @@ const checkOutAt1230 = setTimeTo1230PM(bookingData.checkOut);
               </form>
             )}
 
-            {currentStep === 4 && (
+            {/* {currentStep === 4 && (
               <div className="booking-confirmation">
                 <div className="confirmation-icon"><FaCheck /></div>
                 {bookingStatus === 'confirmed' ? (
@@ -515,7 +517,7 @@ const checkOutAt1230 = setTimeTo1230PM(bookingData.checkOut);
                 <div className="confirmation-details">
                   <div className="detail-item">
                     <span>Booking Reference:</span>
-                    <strong>#{Math.random().toString(36).substr(2, 9).toUpperCase()}</strong>
+                    <strong>#{backendBooking?._id}</strong>
                   </div>
                   <div className="detail-item">
                     <span>Total Amount:</span>
@@ -526,7 +528,70 @@ const checkOutAt1230 = setTimeTo1230PM(bookingData.checkOut);
                   <button onClick={() =>{ scrollToTop();  navigate('/')}} className="btn btn-primary">Return to Home</button>
                 </div>
               </div>
-            )}
+            )} */}
+
+
+            {currentStep === 4 && backendBooking && (
+  <div className="booking-confirmation">
+
+    <div className="confirmation-icon">
+      <FaCheck />
+    </div>
+
+    {bookingStatus === 'confirmed' ? (
+      <>
+        <h3>Reservation Delivered!</h3>
+        <p>Thank you for choosing Airport Golden Tulip Hotel.</p>
+        <p>You chose to pay on arrival.</p>
+      </>
+    ) : (
+      <>
+        <h3>Booking Pending Verification</h3>
+        <p>We’ve received your booking and payment proof.</p>
+        <p>You will receive an email once your payment is confirmed.</p>
+      </>
+    )}
+
+    <div className="confirmation-details">
+
+      <div className="detail-item">
+        <span>Booking Reference:</span>
+        <strong>{backendBooking?.bookingReference}</strong>
+      </div>
+
+      <div className="detail-item">
+        <span>Total Amount:</span>
+        <strong>₦{backendBooking?.total}</strong>
+      </div>
+
+      <div className="detail-item">
+        <span>Room Type:</span>
+        <strong>{backendBooking?.roomType}</strong>
+      </div>
+
+      <div className="detail-item">
+        <span>Check-in:</span>
+        <strong>{new Date(backendBooking?.checkIn).toLocaleDateString()}</strong>
+      </div>
+
+      <div className="detail-item">
+        <span>Check-out:</span>
+        <strong>{new Date(backendBooking?.checkOut).toLocaleDateString()}</strong>
+      </div>
+
+    </div>
+
+    <div className="confirmation-actions">
+      <button
+        onClick={() => { scrollToTop(); navigate('/')}}
+        className="btn btn-primary"
+      >
+        Return to Home
+      </button>
+    </div>
+  </div>
+)}
+
           </motion.div>
         </div>
       </section>
