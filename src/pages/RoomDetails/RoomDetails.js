@@ -6,15 +6,19 @@ import { FiChevronRight, FiCheck } from 'react-icons/fi';
 import './RoomDetails.css';
 
 const RoomDetails = () => {
+
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
   const { roomType } = useParams();
   const [currentImage, setCurrentImage] = useState(0);
-  const [isImageLoading, setIsImageLoading] = useState(true);
+  // const [isImageLoading, setIsImageLoading] = useState(true);
 
   const rooms = {
     deluxe: {
       title: 'Deluxe Room',
       description: 'Comfortable and elegant rooms with modern amenities',
-      price: 199,
+      price: 150000,
       images: [
         'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=1200',
         'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=1200',
@@ -32,7 +36,7 @@ const RoomDetails = () => {
     executive: {
       title: 'Executive Room',
       description: 'Premium workspace with luxurious accommodations for business travelers',
-      price: 299,
+      price: 180000,
       images: [
         'https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=1200',
         'https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=1200',
@@ -51,7 +55,7 @@ const RoomDetails = () => {
     suite: {
       title: 'Luxury Suite',
       description: 'Ultimate luxury with separate living area and premium amenities',
-      price: 499,
+      price: 300000,
       images: [
         'https://images.unsplash.com/photo-1591088398332-8a7791972843?w=1200',
         'https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=1200',
@@ -119,7 +123,7 @@ const RoomDetails = () => {
           >
             <h1>{room.title}</h1>
             <div className="room-price-banner">
-              ${room.price}
+              ₦{room.price}
               <span>per night</span>
             </div>
           </motion.div>
@@ -138,12 +142,19 @@ const RoomDetails = () => {
           >
             <div className="gallery-main">
               <div className="main-image-container">
-                <img
+                {/* <img
                   src={room.images[currentImage]}
                   alt={`${room.title} - Image ${currentImage + 1}`}
                   className="main-image"
-                />
-                <button
+                /> */}
+                {room && room.images && (
+ <img
+  src={room?.images?.[currentImage] || '/default-room.jpg'}
+  alt={room ? `${room.title} - Image ${currentImage + 1}` : 'Loading...'}
+  className="main-image"
+/>
+)}
+        <button
                   onClick={prevImage}
                   className="gallery-nav prev"
                   aria-label="Previous image"
@@ -219,7 +230,7 @@ const RoomDetails = () => {
                   <span className="price-amount">${room.price}</span>
                   <span className="price-period">per night</span>
                 </div>
-                <Link to="/booking" className="btn btn-primary">
+                <Link to="/booking" onClick={scrollToTop} className="btn btn-primary">
                   Book Now
                 </Link>
               </div>
@@ -289,7 +300,7 @@ const RoomDetails = () => {
           >
             <h2>Ready to Book {room.title}?</h2>
             <p>Experience luxury at its finest</p>
-            <Link to="/booking" className="btn btn-white">
+            <Link to="/booking" onClick={scrollToTop} className="btn btn-white">
               Book Now
             </Link>
           </motion.div>

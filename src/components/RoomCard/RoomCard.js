@@ -28,7 +28,7 @@ const RoomCard = ({ room }) => {
       <div className="room-image-container">
         <img src={room.image} alt={room.title} className="room-image" />
         <div className="room-price">
-          <span className="price-amount">${room.price}</span>
+          <span className="price-amount">₦{room.price}</span>
           <span className="price-period">/night</span>
         </div>
       </div>

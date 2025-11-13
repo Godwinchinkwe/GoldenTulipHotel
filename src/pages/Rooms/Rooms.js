@@ -1,15 +1,20 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FaFilter, FaSearch, FaStar, FaWifi, FaParking, FaSwimmingPool, FaUtensils } from 'react-icons/fa';
+import {  FaSearch, } from 'react-icons/fa';
+// import { FaFilter, FaSearch, FaStar, FaWifi, FaParking, FaSwimmingPool, FaUtensils } from 'react-icons/fa';
 import RoomCard from '../../components/RoomCard/RoomCard';
 import './Rooms.css';
 
 
 const Rooms = () => {
+
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
-  const [priceRange, setPriceRange] = useState([0, 300000]);
+  const [priceRange, setPriceRange] = useState([0, 900000]);
 
   const rooms = [
     {
@@ -123,7 +128,7 @@ const Rooms = () => {
                 {categories.map((category) => (
                   <button
                     key={category.id}
-                    onClick={() => setSelectedCategory(category.id)}
+                    onClick={() => { scrollToTop(); setSelectedCategory(category.id)}}
                     className={`category-btn ${selectedCategory === category.id ? 'active' : ''}`}
                   >
                     {category.name}

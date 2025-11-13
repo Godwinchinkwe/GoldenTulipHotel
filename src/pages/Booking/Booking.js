@@ -5,6 +5,10 @@ import { FaCalendarAlt, FaUser, FaEnvelope, FaPhone, FaCheck } from 'react-icons
 import './Booking.css';
 
 const Booking = () => {
+
+     function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
   const location = useLocation();
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(1);
@@ -13,7 +17,7 @@ const Booking = () => {
     roomType: '',
     checkIn: '',
     checkOut: '',
-    guests: 2,
+    guests: 1,
     firstName: '',
     lastName: '',
     email: '',
@@ -131,9 +135,18 @@ const checkOutAt1230 = setTimeTo1230PM(bookingData.checkOut);
     setCurrentStep(4);
 
   } catch (error) {
-    console.error('Error submitting booking:', error);
-    alert('Something went wrong while submitting your booking. Please try again.');
-    setIsLoading(false);
+  console.error("Error submitting booking:", error);
+
+  setIsLoading(false);
+
+  navigate("/booking-error", {
+    state: {
+      errorMessage: "Booking submission failed.",
+      errorDetails: error.message
+    }
+  });
+
+  return; // prevents success page from loading
   }
 
 
@@ -241,7 +254,7 @@ const checkOutAt1230 = setTimeTo1230PM(bookingData.checkOut);
                     <option value="">Select a room type</option>
                     {Object.entries(rooms).map(([key, room]) => (
                       <option key={key} value={key}>
-                        {room.name} - ${room.price}/night
+                        {room.name} - ₦{room.price}/night
                       </option>
                     ))}
                   </select>
@@ -299,7 +312,7 @@ const checkOutAt1230 = setTimeTo1230PM(bookingData.checkOut);
                   </select>
                 </div>
 
-                <button type="submit" className="btn btn-primary">
+                <button type="submit" onClick={scrollToTop} className="btn btn-primary">
                   Continue to Guest Details
                 </button>
               </form>
@@ -402,7 +415,7 @@ const checkOutAt1230 = setTimeTo1230PM(bookingData.checkOut);
                   >
                     Back
                   </button>
-                  <button type="submit" className="btn btn-primary">
+                  <button type="submit" onClick={scrollToTop} className="btn btn-primary">
                     Continue to Payment
                   </button>
                 </div>
@@ -423,7 +436,7 @@ const checkOutAt1230 = setTimeTo1230PM(bookingData.checkOut);
                   {/* <div className="summary-item"><span>Check-in:</span><strong>{formatDate(bookingData.checkIn)}</strong></div>
                   <div className="summary-item"><span>Check-out:</span><strong>{formatDate(bookingData.checkOut)}</strong></div> */}
                   <div className="summary-item"><span>Guests:</span><strong>{bookingData.guests}</strong></div>
-                  <div className="summary-total"><span>Total Amount:</span><strong>${calculateTotal()}</strong></div>
+                  <div className="summary-total"><span>Total Amount:</span><strong>₦{calculateTotal()}</strong></div>
                 </div>
 
                 {/* Payment Choice */}
@@ -475,8 +488,8 @@ const checkOutAt1230 = setTimeTo1230PM(bookingData.checkOut);
                 )}
 
                 <div className="form-actions">
-                  <button type="button" onClick={() => setCurrentStep(2)} className="btn btn-outline">Back</button>
-                  <button type="submit" className="btn btn-primary" disabled={isLoading}>
+                  <button type="button" onClick={() => { scrollToTop(); setCurrentStep(2)}} className="btn btn-outline">Back</button>
+                  <button type="submit" onClick={scrollToTop} className="btn btn-primary" disabled={isLoading}>
                     {isLoading ? 'Processing...' : 'Complete Booking'}
                   </button>
                 </div>
@@ -506,11 +519,11 @@ const checkOutAt1230 = setTimeTo1230PM(bookingData.checkOut);
                   </div>
                   <div className="detail-item">
                     <span>Total Amount:</span>
-                    <strong>${calculateTotal()}</strong>
+                    <strong>₦{calculateTotal()}</strong>
                   </div>
                 </div>
                 <div className="confirmation-actions">
-                  <button onClick={() => navigate('/')} className="btn btn-primary">Return to Home</button>
+                  <button onClick={() =>{ scrollToTop();  navigate('/')}} className="btn btn-primary">Return to Home</button>
                 </div>
               </div>
             )}

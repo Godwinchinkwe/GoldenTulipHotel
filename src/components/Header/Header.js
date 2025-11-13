@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaBars, FaTimes, FaHotel } from 'react-icons/fa';
+import { FaBars, FaTimes, } from 'react-icons/fa';
 import './Header.css';
 import logo from "../../Assets/logo.png"
 
@@ -60,7 +60,7 @@ const Header = () => {
                     <Link 
                       to={item.path}
                       className={`nav-link ${isActive(item.path) ? 'active' : ''}`}
-                      onClick={() => setIsMenuOpen(false)}
+                      onClick={() =>{ scrollToTop(); setIsMenuOpen(false)}}
                     >
                       {item.label}
                     </Link>

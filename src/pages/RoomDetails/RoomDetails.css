@@ -43,7 +43,7 @@
 
 .room-price-banner {
   font-size: var(--font-size-3xl);
-  color: var(--color-primary);
+  color: whitesmoke;
   font-weight: 600;
 }
 

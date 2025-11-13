@@ -16,6 +16,7 @@ import Gallery from "./pages/Gallery/Gallery"
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import LoadingScreen from './components/LoadingScreen/LoadingScreen';
+import ErrorPage from "./components/ErrorPage/ErrorPage";
 
 // Global Styles
 import './App.css';
@@ -41,6 +42,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/gallerypreview" element={<GalleryPreview />} />
             <Route path="/gallery" element={<Gallery />} />
+            <Route path="/booking-error" element={<ErrorPage />} />
           </Routes>
         </motion.main>
         <Footer />

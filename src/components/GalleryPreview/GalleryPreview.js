@@ -5,6 +5,10 @@ import { FiChevronRight } from 'react-icons/fi';
 import './GalleryPreview.css';
 
 const GalleryPreview = () => {
+
+     function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
   const galleryImages = [
     {
       url: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=400',
@@ -82,8 +86,8 @@ const GalleryPreview = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
           className="text-center"
-        >
-          <Link to="/gallery" className="btn btn-outline">
+        > <br/>
+          <Link to="/gallery" onClick={scrollToTop} className="btn btn-outline">
             View Full Gallery
             <FiChevronRight className="btn-icon" />
           </Link>
