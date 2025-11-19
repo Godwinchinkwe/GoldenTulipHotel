@@ -48,20 +48,20 @@ const Contact = () => {
     {
       icon: FaMapMarkerAlt,
       title: 'Address',
-      content: '123 Luxury Avenue<br />Downtown, New York 10001',
+      content: '40- 42 Murtala Muhammed Int’l<br />Airport Road, Oshodi- Ikeja,<br />Lagos',
       color: '#FF6B6B'
     },
     {
       icon: FaPhone,
       title: 'Phone',
-      content: '<a href="tel:+1234567890">+1 (234) 567-890</a><br /><a href="tel:+1987654321">+1 (987) 654-321</a>',
-      color: '#4ECDC4'
+      content: '<a href="tel:+2348157003333">+234 815 700 3333</a><br /><a href="tel:+2348158003333">+234 815 800 3333</a>',
+      color: '##805aa3'
     },
     {
       icon: FaEnvelope,
       title: 'Email',
-      content: '<a href="mailto:info@luxuriagrandhotel.com">info@luxuriagrandhotel.com</a><br /><a href="mailto:reservations@luxuriagrandhotel.com">reservations@luxuriagrandhotel.com</a>',
-      color: '#45B7D1'
+      content: '<a href="info@airportgoldentuliphotel.com">info@airportgoldentuliphotel.com</a><br /><a href="mailto:reservations@airportgoldentuliphotel.com">reservations@airportgoldentuliphotel.com</a>',
+      color: '#805aa3'
     },
     {
       icon: FaClock,

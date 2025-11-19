@@ -9,6 +9,10 @@ import Logo from "../../Assets/logo.png"
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
   const footerLinks = {
     quickLinks: [
       { path: '/', label: 'Home' },
@@ -45,13 +49,14 @@ const Footer = () => {
             className="footer-section footer-company"
           >
             <div className="footer-logo">
-              {/* <FaHotel className="logo-icon" /> */}
-              {/* <span>Golden Tulip</span> */}
-              <img src={Logo} className="logo-icon" alt=""/>
+              <img src={Logo} onClick={scrollToTop} className="logo-icon" alt=""/>
             </div>
             <p className="footer-description">
-              Experience luxury and comfort at its finest. Airport Golden Tulip Hotel offers 
-              unparalleled hospitality in the heart of the city.
+              Comfort reserve
+               just minutes from the Lagos International Airport, 
+               with a luxurious ambiance and excellent International
+                standards, it is conveniently located for anyone
+                 coming in or leaving for the airport.
             </p>
             <div className="social-links">
               {socialLinks.map((social, index) => (
@@ -80,7 +85,8 @@ const Footer = () => {
             <ul className="footer-links">
               {footerLinks.quickLinks.map((link, index) => (
                 <li key={index}>
-                  <Link to={link.path} className="footer-link">
+                  <Link to={link.path}  className="footer-link"
+                  onClick={scrollToTop}>
                     {link.label}
                   </Link>
                 </li>
@@ -99,7 +105,7 @@ const Footer = () => {
             <ul className="footer-links">
               {footerLinks.services.map((service, index) => (
                 <li key={index}>
-                  <a href="#" className="footer-link">
+                  <a href="/menupage" className="footer-link" onClick={scrollToTop}>
                     {service}
                   </a>
                 </li>
@@ -118,15 +124,17 @@ const Footer = () => {
             <div className="contact-info">
               <div className="contact-item">
                 <FaMapMarkerAlt className="contact-icon" />
-                <span>123 Luxury Avenue, Downtown, New York</span>
+                <span>40- 42 Murtala Muhammed Int’l Airport Road, Oshodi- Ikeja, Lagos.</span>
               </div>
               <div className="contact-item">
                 <FaPhone className="contact-icon" />
-                <span><a href="tel:+1234567890">+1 (234) 567-890</a></span>
+                <span><a href="tel:+2348157003333">Receptionist</a></span>,
+                <span><a href="tel:+234815003333">Front-Desk</a></span>
               </div>
+           
               <div className="contact-item">
                 <FaEnvelope className="contact-icon" />
-                <span><a href="mailto:chinkwegodwin@gmail.com">chinkwegodwin@gmail.com.com</a></span>
+                <span><a href="mailto:reservations@airportgoldentuliphotel.com">Reservation</a></span>
               </div>
               <div className="contact-item">
                 <FaClock className="contact-icon" />

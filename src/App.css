@@ -72,6 +72,8 @@ p, h1, h2, h3, h4, h5, h6 {
   --color-primary:#a98024; /* Gold */
   --color-primary-dark: #B8935A;
   --color-primary-light: #E5D4B5;
+    --primary-purple: #805aa3;
+    --accent-gold: #a98024;
   
   --color-secondary: #1A1A1A; /* Rich Black */
   --color-secondary-light: #2D2D2D;

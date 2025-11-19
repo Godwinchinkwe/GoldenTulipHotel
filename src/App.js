@@ -12,14 +12,17 @@ import RoomDetails from './pages/RoomDetails/RoomDetails';
 import GalleryPreview from './components/GalleryPreview/GalleryPreview';
 import Gallery from "./pages/Gallery/Gallery"
 
+
 // Components
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import LoadingScreen from './components/LoadingScreen/LoadingScreen';
 import ErrorPage from "./components/ErrorPage/ErrorPage";
+import MenuPage from './components/MenuPage/MenuPage';
 
 // Global Styles
 import './App.css';
+
 
 function App() {
   return (
@@ -43,6 +46,7 @@ function App() {
             <Route path="/gallerypreview" element={<GalleryPreview />} />
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/booking-error" element={<ErrorPage />} />
+            <Route path="/menupage" element={<MenuPage />} />
           </Routes>
         </motion.main>
         <Footer />
